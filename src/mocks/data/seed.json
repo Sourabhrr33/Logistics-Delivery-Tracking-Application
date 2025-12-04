@@ -1,0 +1,17 @@
+{
+  "users": [
+    { "id": "u_admin", "name": "Admin User", "email": "admin@vp.test", "password": "admin123", "role": "admin" },
+    { "id": "u_cust", "name": "Alan", "email": "Alan@vp.test", "password": "cust123", "role": "customer" },
+    { "id": "u_driver", "name": "Driver One", "email": "driver@vp.test", "password": "driver123", "role": "driver" }
+  ],
+  "orders": [
+    {
+      "id": "ORD-1001",
+      "customerId": "u_cust",
+      "status": "Placed",
+      "address": "123 Main St, City",
+      "items": [{ "name": "Parcel A", "qty": 1 }],
+      "timeline": [{ "status": "Placed", "time": "2025-12-01T10:00:00Z" }]
+    }
+  ]
+}
