@@ -8,29 +8,35 @@ import './index.css'
 import { subscribe } from './mocks/notify'
 import { pushNotification } from './store/slices/notificationsSlice'
 
+// Listen for MSW → frontend notifications
 subscribe((notification: any) => {
-store.dispatch(pushNotification(notification))
+  store.dispatch(pushNotification(notification))
 })
 
 
+async function enableMocking() {
+  // ONLY load MSW if running in browser
+  if (typeof window === 'undefined') return
 
-// start MSW in dev
-if (import.meta.env.DEV) {
   const { worker } = await import('./mocks/browser')
-  worker.start({
+
+  return worker.start({
     serviceWorker: {
-      url: '/mockServiceWorker.js'
-    }
+      url: '/mockServiceWorker.js', 
+    },
+    onUnhandledRequest: 'bypass',   
   })
 }
 
-
-createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
-  </React.StrictMode>
-)
+// Start MSW before rendering the app
+enableMocking().then(() => {
+  createRoot(document.getElementById('root')!).render(
+    <React.StrictMode>
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
+    </React.StrictMode>
+  )
+})
