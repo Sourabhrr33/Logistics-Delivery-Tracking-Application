@@ -1,7 +1,6 @@
 // src/store/slices/authThunks.ts
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import api from '../../api/axios'
-// import { loginStart, loginSuccess } from './authSlice'
 
 export const loginUser = createAsyncThunk(
   'auth/loginUser',

@@ -196,7 +196,7 @@ http.post('/api/orders/:orderId/accept', async ({ params, request }) => {
     return HttpResponse.json({ message: 'Order not found' }, { status: 404 })
 
   order.driverId = driverId
-  order.status = 'Shipped'              // ✔ Correct place to update status
+  order.status = 'Shipped'             
   order.timeline.push({
     status: 'Accepted by driver',
     time: new Date().toISOString(),

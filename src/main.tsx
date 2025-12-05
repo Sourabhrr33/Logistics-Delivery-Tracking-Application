@@ -28,7 +28,7 @@ async function enableMocking() {
   })
 }
 
-// Start MSW before rendering the app
+
 enableMocking().then(() => {
   createRoot(document.getElementById('root')!).render(
     <React.StrictMode>

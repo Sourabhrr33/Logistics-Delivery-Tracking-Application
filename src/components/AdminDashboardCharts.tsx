@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   PieChart, Pie, Cell,
-  BarChart, Bar, XAxis, YAxis, Tooltip,
+  XAxis, YAxis, Tooltip,
   LineChart, Line, CartesianGrid
 } from 'recharts'
 import { useAppSelector } from '../store/hooks'
